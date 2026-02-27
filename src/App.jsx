@@ -6,7 +6,26 @@ import Card from "./components/Card";
 import gameCardItems from "./utils/gameCardItems";
 
 
+function runIntialGameState(cardContentsArr, stateCallBack){
+  // shuffle the card contents array
+
+  const itemsResult = cardContentsArr.map((value, index) => ({
+    id : index,
+    value : value,
+    isFlipped : false,
+    isMatched : false,
+  }));
+
+  stateCallBack(itemsResult);
+}
+
+
 function App() {
+  const [cardContState, setCardContState] = useState();
+
+  // run initial state
+  runIntialGameState(gameCardItems, setCardContState);
+
   return (
     <div className="app">
 
@@ -15,7 +34,7 @@ function App() {
 
       {/* card grid section */}
       <div className="cards-grid">
-        { gameCardItems.map((cardItem) => <Card cardContent={cardItem}/> ) }
+        { cardContState.map((cardItem) => <Card cardContent={cardItem}/> ) }
       </div>
 
     </div>
