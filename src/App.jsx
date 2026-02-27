@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import GameHeader from "./components/GameHeader";
 import Card from "./components/Card";
@@ -21,10 +21,12 @@ function runIntialGameState(cardContentsArr, stateCallBack){
 
 
 function App() {
-  const [cardContState, setCardContState] = useState();
+  const [cardContState, setCardContState] = useState([]);
 
   // run initial state
-  runIntialGameState(gameCardItems, setCardContState);
+  useEffect(() => {
+    runIntialGameState(gameCardItems, setCardContState);
+  }, []);
 
   return (
     <div className="app">
