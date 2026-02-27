@@ -1,17 +1,20 @@
+// react imports
 import { useEffect, useState } from "react";
 
+// component imports
 import GameHeader from "./components/GameHeader";
 import Card from "./components/Card";
 
+// util imports
 import gameCardItems from "./utils/gameCardItems";
 
 
 function runIntialGameState(cardContentsArr, stateCallBack){
   // shuffle the card contents array
 
-  const itemsResult = cardContentsArr.map((value, index) => ({
+  const itemsResult = cardContentsArr.map((_value, index) => ({
     id : index,
-    value : value,
+    value : _value,
     isFlipped : false,
     isMatched : false,
   }));
