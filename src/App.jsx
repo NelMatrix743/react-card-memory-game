@@ -9,22 +9,25 @@ import Card from "./components/Card";
 import gameCardItems from "./utils/gameCardItems";
 
 
-function runIntialGameState(cardContentsArr, stateCallBack){
-  // shuffle the card contents array
-
-  const itemsResult = cardContentsArr.map((_value, index) => ({
-    id : index,
-    value : _value,
-    isFlipped : false,
-    isMatched : false,
-  }));
+function runIntialGameState(cardContentsArr, stateCallBack) {
+  const itemsResult = Object.fromEntries(
+    cardContentsArr.map((_value, index) => [
+      index,
+      {
+        id: index,
+        value: _value,
+        isFlipped: false,
+        isMatched: false,
+      }
+    ])
+  );
 
   stateCallBack(itemsResult);
 }
 
 
 function App() {
-  const [cardContState, setCardContState] = useState([]);
+  const [cardContState, setCardContState] = useState({});
 
   // run initial state
   useEffect(() => {
