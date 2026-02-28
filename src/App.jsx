@@ -25,6 +25,22 @@ function runIntialGameState(cardContentsArr, stateCallBack) {
   stateCallBack(itemsResult);
 }
 
+function handleCardClick(_cardContent){
+  if(_cardContent.isFlipped || _cardContent.isMatched)
+    return;
+
+  const cardID = _cardContent.id;
+
+  // set card state, and maintain the state of other cards
+  setCardContState(prev => ({
+    ...prev,
+    [cardID]: {
+      ...prev[cardID],
+      isFlipped: true
+    }
+  }));
+}
+
 
 function App() {
   const [cardContState, setCardContState] = useState({});
@@ -43,7 +59,7 @@ function App() {
       {/* card grid section */}
       <div className="cards-grid">
         {Object.entries(cardContState).map(([key, cardItem]) => (
-          <Card key={key} cardContent={cardItem} />
+          <Card key={key} cardContent={cardItem} handleCallBack={handleCardClick} />
         ))}
       </div>
 
