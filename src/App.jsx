@@ -42,7 +42,9 @@ function App() {
 
       {/* card grid section */}
       <div className="cards-grid">
-        { cardContState.map((cardItem) => <Card cardContent={cardItem}/> ) }
+        {Object.entries(cardContState).map(([key, cardItem]) => (
+          <Card key={key} cardContent={cardItem} />
+        ))}
       </div>
 
     </div>

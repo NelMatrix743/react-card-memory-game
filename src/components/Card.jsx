@@ -1,5 +1,5 @@
 const Card = (props) => {
-    const { cardContent, handleCallBack } = props;
+    const { key, cardContent, handleCallBack } = props;
 
     return (
         <div className="card" onClick={() => handleCallBack(cardContent)}>
