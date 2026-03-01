@@ -2,7 +2,7 @@ const Card = (props) => {
     const { key, cardContent, handleCallBack } = props;
 
     return (
-        <div className="card" onClick={() => handleCallBack(cardContent)}>
+        <div className={`card ${cardContent.isFlipped ? "flipped" : ""}`} onClick={() => handleCallBack(cardContent)}>
             <div className="card-front">?</div>
             <div className="card-back">{ cardContent.value  }</div>
         </div>
