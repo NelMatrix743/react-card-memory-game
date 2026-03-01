@@ -7,6 +7,7 @@ import Card from "./components/Card";
 
 // util imports
 import gameCardItems from "./utils/gameCardItems";
+import debug from "./utils/debug";
 
 
 function runIntialGameState(cardContentsArr, stateCallBack) {
@@ -25,25 +26,26 @@ function runIntialGameState(cardContentsArr, stateCallBack) {
   stateCallBack(itemsResult);
 }
 
-function handleCardClick(_cardContent){
-  if(_cardContent.isFlipped || _cardContent.isMatched)
-    return;
-
-  const cardID = _cardContent.id;
-
-  // set card state, and maintain the state of other cards
-  setCardContState(prev => ({
-    ...prev,
-    [cardID]: {
-      ...prev[cardID],
-      isFlipped: true
-    }
-  }));
-}
-
 
 function App() {
   const [cardContState, setCardContState] = useState({});
+
+  function handleCardClick(_cardContent){
+
+    if(_cardContent.isFlipped || _cardContent.isMatched)
+      return;
+
+    const cardID = _cardContent.id;
+
+    // set card state, and maintain the state of other cards
+    setCardContState(prev => ({
+      ...prev,
+      [cardID]: {
+        ...prev[cardID],
+        isFlipped: true
+      }
+    }));
+  }
 
   // run initial state
   useEffect(() => {
